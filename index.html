@@ -1,429 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Defender: Superpower Mission</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* GAMING THEME CSS */
-        * { box-sizing: border-box; user-select: none; }
-        
-        body {
-            background-color: #050505;
-            color: #fff;
-            font-family: 'Urbanist', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            background-image: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Defender: Superpower Mission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* GAMING THEME CSS */
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
 
-        .game-container {
-            width: 90%;
-            max-width: 1000px;
-            height: 600px;
-            background: rgba(20, 20, 20, 0.8);
-            border: 2px solid #333;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(16, 185, 129, 0.1);
-            backdrop-filter: blur(10px);
-        }
+    body {
+      background-color: #050505;
+      color: #fff;
+      font-family: 'Urbanist', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      background-image: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+    }
 
-        /* HUD (Heads Up Display) */
-        .hud {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 30px;
-            border-bottom: 2px solid #333;
-            background: rgba(0,0,0,0.5);
-        }
+    .game-container {
+      width: 90%;
+      max-width: 1000px;
+      height: 600px;
+      background: rgba(20, 20, 20, 0.8);
+      border: 2px solid #333;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(16, 185, 129, 0.1);
+      backdrop-filter: blur(10px);
+    }
 
-        .hud-item {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 20px;
-            color: #10b981;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* HUD (Heads Up Display) */
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 30px;
+      border-bottom: 2px solid #333;
+      background: rgba(0, 0, 0, 0.5);
+    }
 
-        /* SCREENS */
-        .screen {
-            position: absolute;
-            top: 60px; /* Below HUD */
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            transition: opacity 0.3s ease;
-        }
+    .hud-item {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 20px;
+      color: #10b981;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .hidden { display: none !important; opacity: 0; }
+    /* SCREENS */
+    .screen {
+      position: absolute;
+      top: 60px;
+      /* Below HUD */
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.3s ease;
+    }
 
-        /* INTRO SCREEN */
-        h1 {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 64px;
-            color: #fff;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px #10b981;
-        }
+    .hidden {
+      display: none !important;
+      opacity: 0;
+    }
 
-        .start-btn {
-            background: #10b981;
-            color: #000;
-            border: none;
-            padding: 20px 60px;
-            font-size: 24px;
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-transform: uppercase;
-        }
+    /* INTRO SCREEN */
+    h1 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 64px;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #10b981;
+    }
 
-        .start-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
-        }
+    .start-btn {
+      background: #10b981;
+      color: #000;
+      border: none;
+      padding: 20px 60px;
+      font-size: 24px;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-transform: uppercase;
+    }
 
-        /* GAMEPLAY SCREEN */
-        .disaster-box {
-            background: rgba(239, 68, 68, 0.1);
-            border: 2px solid #ef4444;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 700px;
-            margin-bottom: 40px;
-            animation: pulse-red 2s infinite;
-        }
+    .start-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+    }
 
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.5); }
-            100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
-        }
+    /* GAMEPLAY SCREEN */
+    .disaster-box {
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid #ef4444;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 700px;
+      margin-bottom: 40px;
+      animation: pulse-red 2s infinite;
+    }
 
-        .disaster-title {
-            color: #ef4444;
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 24px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
+    @keyframes pulse-red {
+      0% {
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+      }
 
-        .disaster-text {
-            font-size: 28px;
-            line-height: 1.4;
-        }
+      50% {
+        box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+      }
 
-        .cards-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+      100% {
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+      }
+    }
 
-        .card {
-            background: #1e1e24;
-            border: 2px solid #444;
-            border-radius: 12px;
-            width: 220px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-        }
+    .disaster-title {
+      color: #ef4444;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
 
-        .card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-5px);
-            background: #25252d;
-        }
+    .disaster-text {
+      font-size: 28px;
+      line-height: 1.4;
+    }
 
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-            color: #3b82f6;
-        }
+    .cards-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .card-title {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-        }
+    .card {
+      background: #1e1e24;
+      border: 2px solid #444;
+      border-radius: 12px;
+      width: 220px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
 
-        /* FEEDBACK OVERLAYS */
-        .feedback {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
+    .card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-5px);
+      background: #25252d;
+    }
 
-        .feedback h2 {
-            font-size: 48px;
-            font-family: 'Chakra Petch', sans-serif;
-            margin-bottom: 20px;
-        }
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #3b82f6;
+    }
 
-        .feedback.correct h2 { color: #10b981; }
-        .feedback.wrong h2 { color: #ef4444; }
+    .card-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-        .next-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 15px 40px;
-            font-size: 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: bold;
-        }
+    /* FEEDBACK OVERLAYS */
+    .feedback {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
 
-        /* PROGRESS BAR */
-        .progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 10px;
-            background: #10b981;
-            width: 0%;
-            transition: width 0.5s;
-        }
+    .feedback h2 {
+      font-size: 48px;
+      font-family: 'Chakra Petch', sans-serif;
+      margin-bottom: 20px;
+    }
 
-    </style>
+    .feedback.correct h2 {
+      color: #10b981;
+    }
+
+    .feedback.wrong h2 {
+      color: #ef4444;
+    }
+
+    .next-btn {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 15px 40px;
+      font-size: 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: bold;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 10px;
+      background: #10b981;
+      width: 0%;
+      transition: width 0.5s;
+    }
+  </style>
 </head>
 <body>
+  <div class="game-container">
 
-<div class="game-container">
-    
     <!-- HEADS UP DISPLAY -->
+
     <div class="hud">
-        <div class="hud-item"><i class="fa-solid fa-server"></i> CLOUD DEFENDER</div>
-        <div class="hud-item" id="scoreDisplay">SCORE: 0</div>
+
+      <div class="hud-item"><i class="fa-solid fa-server"></i> CLOUD DEFENDER</div>
+
+      <div class="hud-item" id="scoreDisplay">SCORE: 0</div>
+
     </div>
 
     <!-- 1. INTRO SCREEN -->
+
     <div id="introScreen" class="screen">
-        <h1>Cloud Defender</h1>
-        <p style="font-size: 24px; color: #aaa; margin-bottom: 40px;">The Server Farm is in trouble! Select the correct superpower to fix the disasters.</p>
-        <button class="start-btn" onclick="startGame()">Start Mission</button>
+
+      <h1>Cloud Defender</h1>
+
+      <p style="font-size: 24px; color: #aaa; margin-bottom: 40px;">The Server Farm is in trouble! Select the correct superpower to fix the disasters.</p>
+
+      <button class="start-btn" onclick="startGame()">Start Mission</button>
+
     </div>
 
     <!-- 2. GAME SCREEN -->
+
     <div id="gameScreen" class="screen hidden">
-        
-        <!-- The Problem -->
-        <div class="disaster-box">
-            <div class="disaster-title"><i class="fa-solid fa-triangle-exclamation"></i> ALERT: SYSTEM FAILURE</div>
-            <div class="disaster-text" id="scenarioText">Loading...</div>
-        </div>
 
-        <p style="color: #aaa; margin-bottom: 20px;">DEPLOY A SUPERPOWER TO FIX THIS:</p>
+      <!-- The Problem -->
 
-        <!-- The Options -->
-        <div class="cards-container" id="optionsContainer">
-            <!-- Cards injected by JS -->
-        </div>
+      <div class="disaster-box">
+
+        <div class="disaster-title"><i class="fa-solid fa-triangle-exclamation"></i> ALERT: SYSTEM FAILURE</div>
+
+        <div class="disaster-text" id="scenarioText">Loading...</div>
+
+      </div>
+
+      <p style="color: #aaa; margin-bottom: 20px;">DEPLOY A SUPERPOWER TO FIX THIS:</p>
+
+      <!-- The Options -->
+
+      <div class="cards-container" id="optionsContainer">
+
+        <!-- Cards injected by JS -->
+
+      </div>
+
     </div>
 
     <!-- 3. VICTORY SCREEN -->
+
     <div id="victoryScreen" class="screen hidden">
-        <h1 style="color: #facc15; text-shadow: 0 0 20px #facc15;">Mission Complete!</h1>
-        <p style="font-size: 32px; margin-bottom: 30px;">Final Score: <span id="finalScore" style="color: #10b981;">0</span>/5</p>
-        <button class="start-btn" onclick="startGame()">Replay Mission</button>
+
+      <h1 style="color: #facc15; text-shadow: 0 0 20px #facc15;">Mission Complete!</h1>
+
+      <p style="font-size: 32px; margin-bottom: 30px;">Final Score: <span id="finalScore" style="color: #10b981;">0</span>/5</p>
+
+      <button class="start-btn" onclick="startGame()">Replay Mission</button>
+
     </div>
 
     <!-- FEEDBACK OVERLAY (Hidden by default) -->
+
     <div id="feedbackOverlay" class="feedback hidden">
-        <h2 id="feedbackTitle">CORRECT!</h2>
-        <p id="feedbackText" style="font-size: 24px; margin-bottom: 30px; text-align: center; max-width: 600px;">Explanation goes here.</p>
-        <button class="next-btn" onclick="nextLevel()">NEXT LEVEL <i class="fa-solid fa-arrow-right"></i></button>
+
+      <h2 id="feedbackTitle">CORRECT!</h2>
+
+      <p id="feedbackText" style="font-size: 24px; margin-bottom: 30px; text-align: center; max-width: 600px;">Explanation goes here.</p>
+
+      <button class="next-btn" onclick="nextLevel()">NEXT LEVEL <i class="fa-solid fa-arrow-right"></i></button>
+
     </div>
 
     <!-- PROGRESS BAR -->
+
     <div class="progress-bar" id="progressBar"></div>
 
-</div>
+  </div>
 
-<script>
+  <script>
     // --- GAME DATA ---
-    const levels = [
-        {
-            disaster: "Oh no! We bought a £5,000 server but nobody is using it. We are wasting all our gold!",
-            correctId: "payg",
-            explanation: "Correct! With 'Pay As You Go', you stop paying when you stop using it. Money saved!",
-            options: [
-                { id: "payg", icon: "fa-coins", title: "Pay As You Go" },
-                { id: "maint", icon: "fa-wrench", title: "Easy Maintenance" },
-                { id: "auto", icon: "fa-robot", title: "Automatic System" }
-            ]
-        },
-        {
-            disaster: "HELP! A creeper blew up our main server room! The game is going to crash!",
-            correctId: "avail",
-            explanation: "Nice work! 'Great Availability' (Infinite Lives) means if one server breaks, another takes over instantly.",
-            options: [
-                { id: "net", icon: "fa-globe", title: "Network Access" },
-                { id: "avail", icon: "fa-rotate", title: "Great Availability" },
-                { id: "payg", icon: "fa-coins", title: "Pay As You Go" }
-            ]
-        },
-        {
-            disaster: "Traffic Alert! 1 Million players just joined the lobby at the same time. It's too crowded!",
-            correctId: "auto",
-            explanation: "Boom! 'Automatic Scaling' saw the traffic and made the server bigger instantly.",
-            options: [
-                { id: "avail", icon: "fa-rotate", title: "Great Availability" },
-                { id: "maint", icon: "fa-wrench", title: "Easy Maintenance" },
-                { id: "auto", icon: "fa-robot", title: "Automatic Scaling" }
-            ]
-        },
-        {
-            disaster: "The Boss is on holiday in Spain, but he needs to check the secret files right now!",
-            correctId: "net",
-            explanation: "Sorted! 'Network Access' lets you login securely from any device, anywhere in the world.",
-            options: [
-                { id: "net", icon: "fa-globe", title: "Network Access" },
-                { id: "payg", icon: "fa-coins", title: "Pay As You Go" },
-                { id: "avail", icon: "fa-rotate", title: "Great Availability" }
-            ]
-        },
-        {
-            disaster: "Ugh, this Windows update is taking 4 hours! We can't do any work while it installs.",
-            correctId: "maint",
-            explanation: "Fixed! With 'Easy Maintenance', the Cloud Provider does the updates in the background for you.",
-            options: [
-                { id: "auto", icon: "fa-robot", title: "Automatic Scaling" },
-                { id: "net", icon: "fa-globe", title: "Network Access" },
-                { id: "maint", icon: "fa-wrench", title: "Easy Maintenance" }
-            ]
-        }
+    const levels = [{
+        disaster: "Oh no! We bought a £5,000 server but nobody is using it. We are wasting all our gold!",
+        correctId: "payg",
+        explanation: "Correct! With 'Pay As You Go', you stop paying when you stop using it. Money saved!",
+        options: [{
+            id: "payg",
+            icon: "fa-coins",
+            title: "Pay As You Go"
+          },
+          {
+            id: "maint",
+            icon: "fa-wrench",
+            title: "Easy Maintenance"
+          },
+          {
+            id: "auto",
+            icon: "fa-robot",
+            title: "Automatic System"
+          }
+        ]
+      },
+      {
+        disaster: "HELP! A creeper blew up our main server room! The game is going to crash!",
+        correctId: "avail",
+        explanation: "Nice work! 'Great Availability' (Infinite Lives) means if one server breaks, another takes over instantly.",
+        options: [{
+            id: "net",
+            icon: "fa-globe",
+            title: "Network Access"
+          },
+          {
+            id: "avail",
+            icon: "fa-rotate",
+            title: "Great Availability"
+          },
+          {
+            id: "payg",
+            icon: "fa-coins",
+            title: "Pay As You Go"
+          }
+        ]
+      },
+      {
+        disaster: "Traffic Alert! 1 Million players just joined the lobby at the same time. It's too crowded!",
+        correctId: "auto",
+        explanation: "Boom! 'Automatic Scaling' saw the traffic and made the server bigger instantly.",
+        options: [{
+            id: "avail",
+            icon: "fa-rotate",
+            title: "Great Availability"
+          },
+          {
+            id: "maint",
+            icon: "fa-wrench",
+            title: "Easy Maintenance"
+          },
+          {
+            id: "auto",
+            icon: "fa-robot",
+            title: "Automatic Scaling"
+          }
+        ]
+      },
+      {
+        disaster: "The Boss is on holiday in Spain, but he needs to check the secret files right now!",
+        correctId: "net",
+        explanation: "Sorted! 'Network Access' lets you login securely from any device, anywhere in the world.",
+        options: [{
+            id: "net",
+            icon: "fa-globe",
+            title: "Network Access"
+          },
+          {
+            id: "payg",
+            icon: "fa-coins",
+            title: "Pay As You Go"
+          },
+          {
+            id: "avail",
+            icon: "fa-rotate",
+            title: "Great Availability"
+          }
+        ]
+      },
+      {
+        disaster: "Ugh, this Windows update is taking 4 hours! We can't do any work while it installs.",
+        correctId: "maint",
+        explanation: "Fixed! With 'Easy Maintenance', the Cloud Provider does the updates in the background for you.",
+        options: [{
+            id: "auto",
+            icon: "fa-robot",
+            title: "Automatic Scaling"
+          },
+          {
+            id: "net",
+            icon: "fa-globe",
+            title: "Network Access"
+          },
+          {
+            id: "maint",
+            icon: "fa-wrench",
+            title: "Easy Maintenance"
+          }
+        ]
+      }
     ];
-
     // --- STATE VARIABLES ---
     let currentLevel = 0;
     let score = 0;
-
     // --- FUNCTIONS ---
-
     function startGame() {
-        currentLevel = 0;
-        score = 0;
-        updateScore();
-        document.getElementById('progressBar').style.width = '0%';
-        
-        // Navigation
-        document.getElementById('introScreen').classList.add('hidden');
-        document.getElementById('victoryScreen').classList.add('hidden');
-        document.getElementById('gameScreen').classList.remove('hidden');
-
-        loadLevel();
+      currentLevel = 0;
+      score = 0;
+      updateScore();
+      document.getElementById('progressBar').style.width = '0%';
+      // Navigation
+      document.getElementById('introScreen').classList.add('hidden');
+      document.getElementById('victoryScreen').classList.add('hidden');
+      document.getElementById('gameScreen').classList.remove('hidden');
+      loadLevel();
     }
 
     function loadLevel() {
-        const levelData = levels[currentLevel];
-        
-        // Set Text
-        document.getElementById('scenarioText').innerText = levelData.disaster;
+      const levelData = levels[currentLevel];
+      // Set Text
+      document.getElementById('scenarioText').innerText = levelData.disaster;
+      // Generate Cards
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = ''; // Clear old cards
+      levelData.options.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'card';
+        btn.onclick = () => checkAnswer(opt.id);
+        btn.innerHTML = `
 
-        // Generate Cards
-        const container = document.getElementById('optionsContainer');
-        container.innerHTML = ''; // Clear old cards
-
-        levelData.options.forEach(opt => {
-            const btn = document.createElement('div');
-            btn.className = 'card';
-            btn.onclick = () => checkAnswer(opt.id);
-            btn.innerHTML = `
                 <div class="card-icon"><i class="fa-solid ${opt.icon}"></i></div>
+
                 <div class="card-title">${opt.title}</div>
+
             `;
-            container.appendChild(btn);
-        });
+        container.appendChild(btn);
+      });
     }
 
     function checkAnswer(selectedId) {
-        const levelData = levels[currentLevel];
-        const overlay = document.getElementById('feedbackOverlay');
-        const title = document.getElementById('feedbackTitle');
-        const text = document.getElementById('feedbackText');
-        const nextBtn = document.querySelector('.next-btn');
-
-        overlay.classList.remove('hidden');
-
-        if (selectedId === levelData.correctId) {
-            // Correct
-            score++;
-            updateScore();
-            overlay.classList.remove('wrong');
-            overlay.classList.add('correct');
-            title.innerText = "SUPERPOWER ACTIVATED!";
-            title.style.color = "#10b981";
-            text.innerText = levelData.explanation;
-            nextBtn.innerText = "NEXT LEVEL";
-        } else {
-            // Wrong
-            overlay.classList.remove('correct');
-            overlay.classList.add('wrong');
-            title.innerText = "SYSTEM FAILURE!";
-            title.style.color = "#ef4444";
-            text.innerText = "That superpower didn't fix the problem. The server crashed!";
-            nextBtn.innerText = "TRY NEXT";
-        }
+      const levelData = levels[currentLevel];
+      const overlay = document.getElementById('feedbackOverlay');
+      const title = document.getElementById('feedbackTitle');
+      const text = document.getElementById('feedbackText');
+      const nextBtn = document.querySelector('.next-btn');
+      overlay.classList.remove('hidden');
+      if (selectedId === levelData.correctId) {
+        // Correct
+        score++;
+        updateScore();
+        overlay.classList.remove('wrong');
+        overlay.classList.add('correct');
+        title.innerText = "SUPERPOWER ACTIVATED!";
+        title.style.color = "#10b981";
+        text.innerText = levelData.explanation;
+        nextBtn.innerText = "NEXT LEVEL";
+      } else {
+        // Wrong
+        overlay.classList.remove('correct');
+        overlay.classList.add('wrong');
+        title.innerText = "SYSTEM FAILURE!";
+        title.style.color = "#ef4444";
+        text.innerText = "That superpower didn't fix the problem. The server crashed!";
+        nextBtn.innerText = "TRY NEXT";
+      }
     }
 
     function nextLevel() {
-        document.getElementById('feedbackOverlay').classList.add('hidden');
-        currentLevel++;
-        
-        // Update Progress Bar
-        const progress = (currentLevel / levels.length) * 100;
-        document.getElementById('progressBar').style.width = progress + '%';
-
-        if (currentLevel < levels.length) {
-            loadLevel();
-        } else {
-            showVictory();
-        }
+      document.getElementById('feedbackOverlay').classList.add('hidden');
+      currentLevel++;
+      // Update Progress Bar
+      const progress = (currentLevel / levels.length) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      if (currentLevel < levels.length) {
+        loadLevel();
+      } else {
+        showVictory();
+      }
     }
 
     function showVictory() {
-        document.getElementById('gameScreen').classList.add('hidden');
-        document.getElementById('victoryScreen').classList.remove('hidden');
-        document.getElementById('finalScore').innerText = score;
+      document.getElementById('gameScreen').classList.add('hidden');
+      document.getElementById('victoryScreen').classList.remove('hidden');
+      document.getElementById('finalScore').innerText = score;
     }
 
     function updateScore() {
-        document.getElementById('scoreDisplay').innerText = `SCORE: ${score}`;
+      document.getElementById('scoreDisplay').innerText = `SCORE: ${score}`;
     }
-
-</script>
-
+  </script>
 </body>
 </html>
